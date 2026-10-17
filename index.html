@@ -1,443 +1,246 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Aniversário da Laurinha 🎀</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>1º Aninho da Heloísa</title>
 
 <style>
+* { box-sizing: border-box; }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+body {
+  margin: 0;
+  background: #fff4d6;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
 }
 
-body{
-    font-family:'Poppins', sans-serif;
-    background:linear-gradient(180deg,#ffd6e7,#fff0f6);
-    color:#444;
+.card {
+  width: min(100%, 540px);
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px #0003;
 }
 
-/* CABEÇALHO */
-
-#cabecario{
-
-    width:100%;
-    height:350px;
-
-    background-image:url("img/capa.jpeg");
-
-    background-size:cover;
-    background-position:center;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:flex-end;
-
-    text-align:right;
-
-    padding-right:40px;
-
-    color:white;
+.hero {
+  width: 100%;
+  display: block;
 }
 
-#cabecario h1{
-    font-size:2.5rem;
-    text-shadow:2px 2px 10px rgba(0,0,0,0.5);
+.buttons {
+  padding: 16px;
+  background: #fff9e9;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
-#cabecario p{
-    margin-top:10px;
-    font-size:1.2rem;
-    text-shadow:2px 2px 10px rgba(0,0,0,0.5);
+button {
+  border: 0;
+  border-radius: 14px;
+  padding: 14px 9px;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
 }
 
-/* MENU */
-
-#indice{
-
-    width:90%;
-    max-width:1000px;
-
-    margin:-40px auto 30px auto;
-
-    background:white;
-
-    border-radius:20px;
-
-    padding:20px;
-
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:15px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+.confirm { background: #e83f68; color: white; }
+.location { background: #713d98; color: white; }
+.gift {
+  background: #f2b900;
+  color: #542c00;
+  grid-column: 1 / -1;
 }
 
-.b1{
-
-    width:220px;
-    height:60px;
-
-    border:none;
-    border-radius:15px;
-
-    background:linear-gradient(135deg,#ff7eb3,#ff4f8b);
-
-    color:white;
-
-    font-size:15px;
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:0.3s;
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #0008;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 20;
 }
 
-.b1:hover{
+.modal.on { display: flex; }
 
-    transform:translateY(-5px);
-
-    box-shadow:0 8px 15px rgba(255,79,139,0.4);
+.box {
+  background: white;
+  border-radius: 22px;
+  padding: 22px;
+  width: min(100%, 400px);
+  text-align: center;
+  position: relative;
 }
 
-/* CAIXAS */
-
-.caixa{
-
-    display:none;
-
-    width:90%;
-    max-width:800px;
-
-    margin:20px auto;
-
-    background:white;
-
-    padding:30px;
-
-    border-radius:20px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
-
-    text-align:center;
+.close {
+  position: absolute;
+  right: 8px;
+  top: 5px;
+  background: none;
+  color: #777;
+  font-size: 25px;
 }
 
-/* INPUTS */
+h2 { color: #713d98; }
 
-.put{
+p { color: #444; line-height: 1.45; }
 
-    width:100%;
-    max-width:350px;
-
-    height:45px;
-
-    margin-top:15px;
-
-    border:1px solid #ddd;
-    border-radius:12px;
-
-    padding:10px;
-
-    text-align:center;
-
-    font-size:15px;
-
-    outline:none;
+input {
+  width: 100%;
+  padding: 13px;
+  border: 2px solid #eee;
+  border-radius: 12px;
+  font-size: 16px;
+  margin: 8px 0 12px;
 }
 
-.put:focus{
-    border:1px solid #ff4f8b;
+.choice, .map, .list {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 13px;
+  padding: 14px;
+  margin-top: 8px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 900;
 }
 
-/* BOTÕES */
-
-.confirmar{
-
-    margin-top:30px;
-
-    width:220px;
-    height:45px;
-
-    border:none;
-    border-radius:12px;
-
-    background:#ff4f8b;
-
-    color:white;
-
-    font-size:16px;
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:0.3s;
-}
-
-.confirmar:hover{
-    background:#ff2f74;
-}
-
-/* POPUP */
-
-#popup{
-
-    display:none;
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background:rgba(0,0,0,0.5);
-
-    justify-content:center;
-    align-items:center;
-
-    z-index:999;
-}
-
-.popup-box{
-
-    background:white;
-
-    padding:30px;
-
-    border-radius:20px;
-
-    text-align:center;
-
-    width:90%;
-    max-width:400px;
-
-    animation:aparecer 0.3s ease;
-}
-
-@keyframes aparecer{
-
-    from{
-        transform:scale(0.8);
-        opacity:0;
-    }
-
-    to{
-        transform:scale(1);
-        opacity:1;
-    }
-}
-
-/* RODAPÉ */
-
-footer{
-
-    margin-top:50px;
-    padding:20px;
-
-    text-align:center;
-
-    color:#777;
-}
-
-/* RESPONSIVO */
-
-@media(max-width:600px){
-
-    #cabecario{
-        text-align:center;
-        align-items:center;
-        padding-right:0;
-    }
-
-    #cabecario h1{
-        font-size:2rem;
-    }
-
-    .b1{
-        width:100%;
-    }
-
-    .confirmar{
-        width:100%;
-    }
-}
-
+.choice, .list { background: #e83f68; color: white; }
+.map { background: #713d98; color: white; }
+.note { font-size: 12px; color: #888; }
 </style>
 </head>
 
 <body>
+<div class="card">
 
-<!-- CABEÇALHO -->
+  <img class="hero"
+       src="convite.jpg"
+       alt="Convite do aniversário de 1 ano da Heloísa">
 
-<div id="cabecario">
+  <div class="buttons">
+    <button class="confirm"
+      onclick="openModal('presence')">
+      💗 CONFIRMAR PRESENÇA
+    </button>
 
-    <h1>Aniversário da Laurinha 🎀</h1>
+    <button class="location"
+      onclick="openModal('location')">
+      📍 VER LOCAL
+    </button>
 
-    <p>
-        Você é nosso convidado especial 💖
-    </p>
-
+    <button class="gift"
+      onclick="openModal('gift')">
+      🎁 SUGESTÕES DE PRESENTE
+    </button>
+  </div>
 </div>
 
-<!-- MENU -->
+<!-- CONFIRMAÇÃO DE PRESENÇA -->
+<div class="modal" id="presence">
+  <div class="box">
+    <button class="close" onclick="closeAll()">×</button>
 
-<div id="indice">
+    <h2>💗 Confirme sua presença</h2>
+    <p>Será uma alegria ter você no 1º aninho da Heloísa!</p>
 
-    <button class="b1" onclick="mostrar('confirmacao')">
-        Confirmar Presença
-    </button>
+    <form action="https://formsubmit.co/larijesus122000@gmail.com"
+          method="POST">
 
-    <button class="b1" onclick="mostrar('presentes')">
-        Lista de Presentes
-    </button>
+      <input type="text" name="Nome"
+             placeholder="Seu nome" required>
 
-    <button class="b1" onclick="mostrar('local')">
-        Local da Festa
-    </button>
+      <input type="hidden" name="Evento"
+             value="1º aniversário da Heloísa">
 
-</div>
+      <input type="hidden" name="Data"
+             value="15 de novembro às 14h">
 
-<!-- CONFIRMAÇÃO -->
+      <input type="hidden" name="_subject"
+             value="Confirmação de presença - Aniversário da Heloísa">
 
-<div id="confirmacao" class="caixa">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
 
-    <h2>✨ Confirmar Presença</h2>
+      <button class="choice" type="submit"
+              name="Presença" value="SIM">
+        🎉 Sim, vou participar!
+      </button>
 
-    <form
-        action="https://formsubmit.co/jeffsouza.gomes16@gmail.com"
-        method="POST"
-    >
-
-        <input
-            class="put"
-            type="text"
-            name="Nome"
-            placeholder="Digite Seu Nome"
-            required
-        >
-
-        <br>
-
-        <input
-            class="put"
-            type="text"
-            name="Acompanhantes"
-            placeholder="Quem Vai Contigo?"
-        >
-
-        <br>
-
-        <input
-            class="put"
-            type="email"
-            name="Email"
-            placeholder="Digite Seu Email"
-            required
-        >
-
-        <br>
-
-        <input
-            type="hidden"
-            name="_subject"
-            value="Nova confirmação de presença 🎂"
-        >
-
-        <input
-            type="hidden"
-            name="_captcha"
-            value="false"
-        >
-
-        <button class="confirmar" type="submit">
-            Confirmar
-        </button>
-
+      <button class="choice" type="submit"
+              name="Presença" value="NÃO">
+        😢 Não poderei comparecer
+      </button>
     </form>
 
+    <p class="note">
+      A confirmação será enviada para o e-mail da família.
+    </p>
+  </div>
 </div>
 
-<!-- PRESENTES -->
+<!-- LOCALIZAÇÃO E UBER -->
+<div class="modal" id="location">
+  <div class="box">
+    <button class="close" onclick="closeAll()">×</button>
 
-<div id="presentes" class="caixa">
+    <h2>📍 Como chegar</h2>
+    <p><strong>Creche, Castelo Branco</strong></p>
 
-    <h2>🎁 Lista de Presentes</h2>
+    <a class="map"
+       href="https://m.uber.com/ul/?action=setPickup&amp;pickup=my_location&amp;dropoff[formatted_address]=Congrega%C3%A7%C3%A3o%20Crist%C3%A3%20no%20Brasil%20-%20Castelo%20Branco%20-%20Creche"
+       target="_blank" rel="noopener">
+      🚗 IR DE UBER
+    </a>
+  </div>
+</div>
 
-    <br>
+<!-- LISTA DE PRESENTES -->
+<div class="modal" id="gift">
+  <div class="box">
+    <button class="close" onclick="closeAll()">×</button>
+
+    <h2>🎁 Sugestões de presente</h2>
 
     <p>
-        Aqui você encontrará algumas sugestões de presentes 💖
-        Mas o mais importante é sua presença nesse dia especial ✨
+      Preparamos uma lista especial com sugestões para a Heloísa. 💗
     </p>
 
-    <br><br>
-
-    <a href="https://laurinha-faz2.listaideal.com.br/pt/" target="_blank">
-
-        <button class="confirmar">
-            Ver Lista
-        </button>
-
+    <a class="list"
+       href="https://aniversario-xwur.listaideal.com.br/pt"
+       target="_blank" rel="noopener">
+      💝 VER LISTA DE PRESENTES
     </a>
 
-</div>
-
-<!-- LOCAL -->
-
-<div id="local" class="caixa">
-
-    <h2>📍 Local da Festa</h2>
-
-    <br>
-
-    <p>
-        Clique abaixo para abrir o endereço no Google Maps ✨
+    <p class="note">
+      O mais importante é ter você com a gente!
     </p>
-
-    <br><br>
-
-    <a href="https://maps.app.goo.gl/knyszwwUzeS5uxbH7" target="_blank">
-
-        <button class="confirmar">
-            Abrir Localização
-        </button>
-
-    </a>
-
+  </div>
 </div>
-
-<footer>
-
-    Feito com 💖 para celebrar o aniversário da Laurinha
-
-</footer>
 
 <script>
-
-/* MOSTRAR CAIXAS */
-
-function mostrar(id){
-
-    document.getElementById("confirmacao").style.display = "none";
-
-    document.getElementById("presentes").style.display = "none";
-
-    document.getElementById("local").style.display = "none";
-
-    document.getElementById(id).style.display = "block";
+function openModal(id) {
+  closeAll();
+  document.getElementById(id).classList.add('on');
 }
 
+function closeAll() {
+  document.querySelectorAll('.modal').forEach(function(modal) {
+    modal.classList.remove('on');
+  });
+}
+
+document.querySelectorAll('.modal').forEach(function(modal) {
+  modal.addEventListener('click', function(event) {
+    if (event.target === modal) closeAll();
+  });
+});
 </script>
 
 </body>
